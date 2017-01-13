@@ -11,7 +11,13 @@ namespace HelloWorld
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //tbxName.Text = "Hello World";
+        }
 
+        protected void btnHello_Click(object sender, EventArgs e)
+        {
+            string name = tbxName.Text;
+            tbxName.Text = "Hello " + name;
         }
     }
 }

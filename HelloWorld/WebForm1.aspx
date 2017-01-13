@@ -10,7 +10,9 @@
     <form id="form1" runat="server">
     <div>
     <!--<p>Hello World</p>-->
-        <asp:TextBox ID="tbxName" runat="server" TextMode="Password"></asp:TextBox>
+        <asp:TextBox ID="tbxName" runat="server"></asp:TextBox>
+        <br />
+        <asp:Button ID="btnHello" runat="server" Text="Say Hello" OnClick="btnHello_Click" />
     </div>
     </form>
 </body>
