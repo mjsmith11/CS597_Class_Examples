@@ -25,5 +25,42 @@ namespace Week1Friday
         {
             tbxState.Text = ddlStates.SelectedValue;
         }
+
+        protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tbxState.Text = RadioButtonList1.SelectedValue;
+        }
+
+        protected void btnToppings_Click(object sender, EventArgs e)
+        {
+            //checkbox list only gives first value in the list that is selected in SelectedValue
+            //tbxState.Text = cbxlToppings.SelectedValue;
+            string displayText = "";
+            foreach (ListItem l in cbxlToppings.Items)
+            {
+                if (l.Selected)
+                    displayText += l.Text + " ";
+            }
+            //    for(int i = 0; i<cbxlToppings.Items.Count; i++)
+            //    {
+            //        if(cbxlToppings.Items[i].Selected)
+            //        {
+            //            displayText += cbxlToppings.Items[i].Text+" ";
+            //        }
+            //    }
+           tbxState.Text = displayText;
+
+        }
+
+        protected void btnlbxToppings_Click(object sender, EventArgs e)
+        {
+            string displayText = "";
+            foreach (ListItem l in lbxToppings.Items)
+            {
+                if (l.Selected)
+                    displayText += l.Text + " ";
+            }
+            tbxState.Text = displayText;
+        }
     }
 }
