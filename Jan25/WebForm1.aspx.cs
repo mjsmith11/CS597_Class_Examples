@@ -22,12 +22,17 @@ namespace Jan25
             //Design SQL query
             string qry = "select LastName,FirstName from Students";
             //Associate the above SQL query with the above connection
-
+            OleDbCommand cmd = new OleDbCommand(qry, conn);
             //Run the Query
-
+            OleDbDataAdapter da = new OleDbDataAdapter(cmd);
             //Store the results of the query
+            //DataTable dt = new DataTable();
+            DataSet ds = new DataSet();
+            da.Fill(ds,"StudentNames");
 
             //Bind the results to a presentation layer control (GridView)
+            gvDisplay.DataSource = ds.Tables["StudentNames"];
+            gvDisplay.DataBind();
         }
     }
 }
