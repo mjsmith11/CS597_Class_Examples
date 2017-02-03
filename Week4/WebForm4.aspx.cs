@@ -29,6 +29,7 @@ namespace Week4
                     //Add ListItem to ddlStudents
                     ddlStudents.Items.Add(new ListItem(rdr["LastName"].ToString() + ", " + rdr["FirstName"],rdr["SSN"].ToString()));
                 }
+                rdr.Close();
                 conn.Close();
             }
         }
