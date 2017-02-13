@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.OleDb;
+using System.Data.SqlClient; //Replaces OleDB for MSSQL
 using System.Data;
 using System.Configuration;
 
@@ -17,10 +18,14 @@ namespace Week5
             if (!IsPostBack)
             {
                 OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["Week5CS"].ConnectionString);
+                //SqlConnection conn = new SqlConnection(connectionString)
                 string qry = "SELECT SSN,FirstName,LastName FROM Students";
                 OleDbCommand cmd = new OleDbCommand(qry, conn);
+                //SqlCommand cmd = new SqlCommand(qry, conn);
                 conn.Open();
                 OleDbDataReader rdr = cmd.ExecuteReader();
+                //SqlDataReader rdr = cmd.ExecuteReader();
+                //SqlDataAdapter da
                 while (rdr.Read())
                 {
                     //Create a ListItem
