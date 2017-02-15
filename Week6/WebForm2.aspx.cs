@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Configuration;
 
 namespace Week6
 {
@@ -11,7 +12,7 @@ namespace Week6
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            DatabaseQueries.DBQueries qry = new DatabaseQueries.DBQueries();
+            DatabaseQueries.DBQueries qry = new DatabaseQueries.DBQueries(ConfigurationManager.ConnectionStrings["Week6CS"].ConnectionString);
             qry.CreateSqlCommand("SELECT * FROM EMPLOYEES");
             gvDisplay.DataSource = qry.RunSelectDataAdapterQuery();
             gvDisplay.DataBind();
