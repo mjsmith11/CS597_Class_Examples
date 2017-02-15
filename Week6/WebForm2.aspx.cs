@@ -11,17 +11,17 @@ namespace Week6
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Queries qry = new Queries();
-            //qry.CreateSqlCommand("SELECT * FROM EMPLOYEES");
-            //gvDisplay.DataSource = qry.RunSelectDataAdapterQuery();
-            //gvDisplay.DataBind();
-            Queries qry = new Queries();
-            qry.CreateSqlCommand("Update Employees Set Salary=@s WHERE EmployeeId=@e");
-            qry.AddQueryParameter("@s", 90000);
-            qry.AddQueryParameter("@e", 3);
-            qry.Connect();
-            qry.GetSqlCommand().ExecuteNonQuery();
-            qry.Disconnect();
+            DatabaseQueries.DBQueries qry = new DatabaseQueries.DBQueries();
+            qry.CreateSqlCommand("SELECT * FROM EMPLOYEES");
+            gvDisplay.DataSource = qry.RunSelectDataAdapterQuery();
+            gvDisplay.DataBind();
+            //DatabaseQueries.DBQueries qry = new DatabaseQueries.DBQueries();
+            //qry.CreateSqlCommand("Update Employees Set Salary=@s WHERE EmployeeId=@e");
+            //qry.AddQueryParameter("@s", 90000);
+            //qry.AddQueryParameter("@e", 3);
+            //qry.Connect();
+            //qry.GetSqlCommand().ExecuteNonQuery();
+            //qry.Disconnect();
         }
     }
 }
