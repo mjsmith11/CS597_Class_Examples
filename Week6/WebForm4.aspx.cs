@@ -16,7 +16,7 @@ namespace Week6
         {
             if(Session["EmployeeId"]==null)
             {
-                Response.Redirect("WebFrom3.aspx");
+                Response.Redirect("WebForm3.aspx");
             }
             int employeeId = Int32.Parse(Session["EmployeeId"].ToString());
             DBQueries qry = new DBQueries(ConfigurationManager.ConnectionStrings["Week6CS"].ConnectionString);

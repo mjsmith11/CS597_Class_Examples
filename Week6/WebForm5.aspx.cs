@@ -21,12 +21,12 @@ namespace Week6
         {
             string usernameTypedByUser = tbxUsername.Text;
             DBQueries qry = new DBQueries(ConfigurationManager.ConnectionStrings["Week6CS"].ConnectionString);
-            qry.CreateSqlCommand("SELECT Username from Employees");
+            qry.CreateSqlCommand("SELECT UserId from Employees");
             DataTable dt = qry.RunSelectDataAdapterQuery();
             bool isTaken = false;
             foreach(DataRow dr in dt.Rows)
             {
-                if (dr["Username"].ToString().Equals(usernameTypedByUser))
+                if (dr["UserId"].ToString().Equals(usernameTypedByUser))
                 {
                     isTaken = true;
                     break;
