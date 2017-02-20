@@ -24,8 +24,9 @@ namespace Week6
         {
             int employeeId = -1;
             string passwordFromDatabase = "";
+            int userType = -1;
             DBQueries qry = new DBQueries(ConfigurationManager.ConnectionStrings["Week6CS"].ConnectionString);
-            qry.CreateSqlCommand("SELECT Password,EmployeeId FROM Employees WHERE UserId = @u");
+            qry.CreateSqlCommand("SELECT Password,EmployeeId,UserType FROM Employees WHERE UserId = @u");
             qry.AddQueryParameter("@u", tbxUserId.Text);
             qry.Connect();
             SqlDataReader rdr = qry.GetSqlCommand().ExecuteReader();
@@ -33,6 +34,7 @@ namespace Week6
             {
                 passwordFromDatabase = rdr["Password"].ToString();
                 employeeId = Int32.Parse(rdr["EmployeeId"].ToString());
+                userType = Int32.Parse(rdr["UserType"].ToString());
             }
 
             rdr.Close();
@@ -54,7 +56,8 @@ namespace Week6
             if (hashedPasswordFromUser.Equals(passwordFromDatabase))
             {
                 Session["EmployeeId"] = employeeId;
-                Response.Redirect("WebForm4.aspx");
+                Session["UserType"] = userType;
+                Response.Redirect("WebForm5.aspx"); //his is webform3 that doesn't exist yet
             }
         }
     }
