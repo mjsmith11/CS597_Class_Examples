@@ -12,22 +12,23 @@ namespace Week8
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            MySqlConnection conn = new MySqlConnection("servver = csmadison.dhcp.bsu.edu; uid = vjtanksale; pwd=changeme; database=cs320;");
-            string qry = "SELECT * FROM STUDENTS";
+            MySqlConnection conn = new MySqlConnection("server = 192.168.1.14; uid = matt; pwd=password; database=CS597;");
+            string qry = "SELECT * FROM Students";
             MySqlCommand cmd = new MySqlCommand(qry, conn);
-            conn.Open();
+            /*conn.Open();
             MySqlDataReader rdr = cmd.ExecuteReader();
             while(rdr.Read())
             {
                 Response.Write(rdr["LastName"].ToString() + "<br/>");
             }
             rdr.Close();
-            conn.Close();
+            conn.Close();*/
 
             MySqlDataAdapter da = new MySqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
-
+            gvDisplay.DataSource = dt;
+            gvDisplay.DataBind();
         }
     }
 }
