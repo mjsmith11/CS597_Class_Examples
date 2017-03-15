@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using MySql.Data.MySqlClient; // need dll
+//using MySql.Data.MySqlClient; // need dll
 using System.Data;
 namespace Week8
 {
@@ -12,7 +12,7 @@ namespace Week8
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            MySqlConnection conn = new MySqlConnection("servver = csmadison.dhcp.bsu.edu; uid = vjtanksale; pwd=changeme; database=cs320;");
+           /* MySqlConnection conn = new MySqlConnection("servver = csmadison.dhcp.bsu.edu; uid = vjtanksale; pwd=changeme; database=cs320;");
             string qry = "SELECT * FROM STUDENTS";
             MySqlCommand cmd = new MySqlCommand(qry, conn);
             conn.Open();
@@ -26,7 +26,7 @@ namespace Week8
 
             MySqlDataAdapter da = new MySqlDataAdapter(cmd);
             DataTable dt = new DataTable();
-            da.Fill(dt);
+            da.Fill(dt);*/
 
         }
     }

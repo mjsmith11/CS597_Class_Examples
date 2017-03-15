@@ -11,9 +11,10 @@ namespace Week10
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            nws.ndfdXMLPortTypeClient nws = new nws.ndfdXMLPortTypeClient();
-            string weather = nws.NDFDgenByDay(40,-85,DateTime.Today,"5",nws.unitType.e,nws.formatType.??); //Return from webservice call
-            XmlDocument forecast = new XmlDocument();
+            nws.ndfdXMLPortTypeClient wthr = new nws.ndfdXMLPortTypeClient();
+            string weather = wthr.NDFDgenByDay(40, -85, DateTime.Today, "5", nws.unitType.e, nws.formatType.Item12hourly);
+            Response.Write(weather);
+            /*XmlDocument forecast = new XmlDocument();
             forecast.LoadXml(weather);
             List<double> max = new List<double>();
             XmlNodeList temperature = forecast.GetElementsByTagName("termperature");
@@ -29,7 +30,7 @@ namespace Week10
                         }
                     }
                 }
-            }
+            }*/
         }
     }
 }
