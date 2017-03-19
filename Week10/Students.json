@@ -1,0 +1,24 @@
+﻿[
+
+  {
+    "firstName": "Alice",
+    "lastName": "Smith",
+    "Address": {
+      "street": "123 Central Avenue",
+      "city": "Muncie",
+      "state": "IN",
+      "zip": "47304"
+    }
+  },
+  {
+    "firstName": "Bob",
+    "lastName": "Jones",
+    "Address": {
+      "street": "456 McKinley Avenue",
+      "city": "Muncie",
+      "state": "IN",
+      "zip": "47306"
+    }
+
+  }
+]
