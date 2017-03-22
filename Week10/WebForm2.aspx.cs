@@ -11,27 +11,43 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Net; //for making calls that return json
 
+
 namespace Week10
 {
     public partial class WebForm2 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string file = HostingEnvironment.MapPath(@"/Students.json");//for reading a local file
-            StreamReader reader = new StreamReader(file);
-            string contents = reader.ReadToEnd();
+            /* string file = HostingEnvironment.MapPath(@"/Students.json");//for reading a local file
+             StreamReader reader = new StreamReader(file);
+             string contents = reader.ReadToEnd();
 
-            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(List<Student>));//making a contract with a list of student objects
-            MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(contents));//converts to a memory stream
-            List<Student> s = (List<Student>)js.ReadObject(stream);//read the stream and serialize it to a List<> object
+             DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(List<Student>));//making a contract with a list of student objects
+             MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(contents));//converts to a memory stream
+             List<Student> s = (List<Student>)js.ReadObject(stream);//read the stream and serialize it to a List<> object
 
-            //Response.Write(s[0].Address.Zip);
-            Response.Write(s[1].FirstName);
+             //Response.Write(s[0].Address.Zip);
+             Response.Write(s[1].FirstName);*/
 
             //generate an http request
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://ip.jsontest.com");
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            StreamReader reader = new StreamReader(response.GetResponseStream());
+            //string temp = rdr.ReadToEnd();
+
             //send the request 
             //read the HTTPResponse
+            //string file = HostingEnvironment.MapPath(@"/Students.json");
+            //StreamReader reader = new StreamReader(file);
+            string contents = reader.ReadToEnd();
             //Serialize and read into objects
+            //DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(List<Student>));
+            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(IP));
+            MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(contents));
+            //List<Student> students = (List<Student>)js.ReadObject(stream);
+            IP ip = (IP)js.ReadObject(stream);
+            Response.Write(ip.Ip);
+
                 //define C# class(es)
                 //jsonutils.com
                 //Make DataContract using JSONSerializer
@@ -40,6 +56,7 @@ namespace Week10
     }
 
     //these can be auto generated
+    // these can have 2 of 100 attribtes if you only need 2 for your purposes
     [DataContract]
     public class Address
     {
@@ -70,5 +87,10 @@ namespace Week10
         public Address Address { get; set; }
     }
 
-
+    [DataContract]
+    public class IP
+    {
+        [DataMember (Name="ip")]
+        public string Ip { get; set; }
+    }
 }
