@@ -9,6 +9,7 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using System.Net; //for making calls that return json
 
 namespace Week10
 {
@@ -26,6 +27,15 @@ namespace Week10
 
             //Response.Write(s[0].Address.Zip);
             Response.Write(s[1].FirstName);
+
+            //generate an http request
+            //send the request 
+            //read the HTTPResponse
+            //Serialize and read into objects
+                //define C# class(es)
+                //jsonutils.com
+                //Make DataContract using JSONSerializer
+                //Read JSON and store in C# objects
         }
     }
 
