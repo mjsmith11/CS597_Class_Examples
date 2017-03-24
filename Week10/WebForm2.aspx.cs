@@ -6,8 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Hosting;
 using System.IO;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
+using System.Runtime.Serialization; 
+using System.Runtime.Serialization.Json; //may need to go to add references and find this under framework
 using System.Text;
 using System.Net; //for making calls that return json
 
@@ -30,7 +30,7 @@ namespace Week10
              Response.Write(s[1].FirstName);*/
 
             //generate an http request
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://ip.jsontest.com");
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://ip.jsontest.com");//http://itunes.apple.com/search?term=Batman&entity=movie
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             StreamReader reader = new StreamReader(response.GetResponseStream());
             //string temp = rdr.ReadToEnd();
