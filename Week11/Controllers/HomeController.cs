@@ -8,6 +8,10 @@ namespace Week11.Controllers
 {
     public class HomeController : Controller
     {
+        public string SayHello()
+        {
+            return "Hello World";
+        }
         public ActionResult Index()
         {
             return View();
