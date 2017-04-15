@@ -15,9 +15,22 @@ namespace Week13.Controllers
         private StudentDbContext db = new StudentDbContext();
 
         // GET: Students
-        public ActionResult Index()
+        public ActionResult Index(string searchValue)
         {
-            return View(db.Students.ToList());
+            var lastNames = new List<string>();
+            var qry = from s in db.Students
+                      select s.lastName;
+            lastNames.AddRange(qry.Distinct());
+            ViewBag.lName = new SelectList(lastNames);
+
+            var students = from s in db.Students select s;
+            if(!String.IsNullOrEmpty(searchValue))
+            {
+                students = students.Where(s => s.lastName.Contains(searchValue));
+            }
+
+            //return View(db.Students.ToList());
+            return View(students);
         }
 
         // GET: Students/Details/5
