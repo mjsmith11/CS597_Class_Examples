@@ -15,16 +15,19 @@
             Location: @Html.DropDownList("courseNumber");
             <br/>
             @Html.CheckBox("mondays")
+            <input type="submit" value="Search"/>
         </p>
     }
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.CourseNumber)
+            <!--@Html.DisplayNameFor(model => model.CourseNumber)-->
+            @Html.ActionLink("CourseNumber", "Index", new {  sortBy = "CourseNumber" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SectionNumber)
+            <!--@Html.DisplayNameFor(model => model.SectionNumber)-->
+            @Html.ActionLink("Section Number", "Index", new { sortBy = "SectionNumber" })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Days)

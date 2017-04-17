@@ -11,14 +11,22 @@ namespace Week14Friday.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Schedule
     {
-        public int CRN { get; set; }
+        [Required]
+        public int CRN { get; set; } 
         public string CourseNumber { get; set; }
         public string SectionNumber { get; set; }
         public string Days { get; set; }
+
+        [StringLength(4)]
         public string StartTime { get; set; }
         public string EndTime { get; set; }
+
+        //[DataType(DataType.EmailAddress)]
+        //[StringLength(25, MinimumLength=1)]
+
     }
 }

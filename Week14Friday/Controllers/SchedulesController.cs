@@ -15,8 +15,10 @@ namespace Week14Friday.Controllers
         private CoursesEntities db = new CoursesEntities();
 
         // GET: Schedules
-        public ActionResult Index(string num)
+        public ActionResult Index(string sortBy)
         {
+            if(Request.Form["courseNumber"] != null)
+                Response.Write(Request.Form["courseNumber"].ToString());
             var courseNumberList = new List<string>();
             var number = from s in db.Schedules select s.CourseNumber;
             courseNumberList.AddRange(number.Distinct());
@@ -24,12 +26,22 @@ namespace Week14Friday.Controllers
 
             //Response.Write("Hello World"); //this would work
 
+            if (String.IsNullOrEmpty(sortBy))
+                sortBy = "";
             var courses = from e in db.Schedules select e;
-
-            if(!String.IsNullOrEmpty(num))
+            if (sortBy.Equals("CourseNumber"))
             {
-                courses = courses.Where(e => e.CourseNumber == num);
+                courses = from e in db.Schedules orderby e.CourseNumber select e;
             }
+            else if (sortBy.Equals("SectionNumber"))
+            {
+                courses = from e in db.Schedules orderby e.SectionNumber select e;
+            }
+
+            //if(!String.IsNullOrEmpty(num))
+            //{
+            //    courses = courses.Where(e => e.CourseNumber == num);
+            //}
 
             return View(courses.ToList());
         }
