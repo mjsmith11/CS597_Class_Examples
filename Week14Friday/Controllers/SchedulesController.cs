@@ -14,8 +14,18 @@ namespace Week14Friday.Controllers
     {
         private CoursesEntities db = new CoursesEntities();
 
+        public ActionResult DropDownDemo()
+        {
+            
+            List<SelectListItem> items = new List<SelectListItem>();
+            items.Add(new SelectListItem { Text = "Chicago", Value = "0" });
+            items.Add(new SelectListItem { Text = "Boston", Value = "1", Selected=true});
+            items.Add(new SelectListItem { Text = "Detroit", Value = "2" });
+            ViewBag.Location = items;
+            return View(db.Schedules.ToList());
+        }
         // GET: Schedules
-        public ActionResult Index(string sortBy)
+        public ActionResult Index(string sortBy, string searchString, string courseNumber)
         {
             if(Request.Form["courseNumber"] != null)
                 Response.Write(Request.Form["courseNumber"].ToString());
@@ -31,17 +41,24 @@ namespace Week14Friday.Controllers
             var courses = from e in db.Schedules select e;
             if (sortBy.Equals("CourseNumber"))
             {
-                courses = from e in db.Schedules orderby e.CourseNumber select e;
+                //courses = from e in db.Schedules orderby e.CourseNumber select e;
+                courses = courses.OrderBy(e => e.CourseNumber);
             }
             else if (sortBy.Equals("SectionNumber"))
             {
-                courses = from e in db.Schedules orderby e.SectionNumber select e;
+                //courses = from e in db.Schedules orderby e.SectionNumber select e;
+                courses = courses.OrderBy(e => e.SectionNumber);
             }
 
-            //if(!String.IsNullOrEmpty(num))
-            //{
-            //    courses = courses.Where(e => e.CourseNumber == num);
-            //}
+            if(!String.IsNullOrEmpty(courseNumber))
+            {
+                //courses = courses.Where(....)
+            }
+            if(!String.IsNullOrEmpty(searchString))
+            {
+                courses = courses.Where(e => e.CourseNumber.Contains(searchString)); //this condition can be as complex as necessary
+            }
+            //issue: search undoes sort. sort removes search. Use session or query string to help it
 
             return View(courses.ToList());
         }
