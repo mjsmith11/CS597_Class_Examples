@@ -238,6 +238,7 @@
     <Content Include="Views\Schedules\Edit.cshtml" />
     <Content Include="Views\Schedules\Index.cshtml" />
     <Content Include="Views\Schedules\DropDownDemo.cshtml" />
+    <Content Include="Views\Schedules\Sample.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -158,6 +158,8 @@ namespace Week14Friday.Controllers
             return RedirectToAction("Index");
         }
 
+        //notice delete view has multiple actions
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -165,6 +167,11 @@ namespace Week14Friday.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult Sample()
+        {
+            return View();
         }
     }
 }
