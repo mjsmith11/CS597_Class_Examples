@@ -27,6 +27,10 @@ namespace Week14Friday.Controllers
         // GET: Schedules
         public ActionResult Index(string sortBy, string searchString, string courseNumber)
         {
+            if(Request.QueryString.Count > 0)
+               {
+                Response.Write(Request.QueryString[0]);
+            }
             if(Request.Form["courseNumber"] != null)
                 Response.Write(Request.Form["courseNumber"].ToString());
             var courseNumberList = new List<string>();
